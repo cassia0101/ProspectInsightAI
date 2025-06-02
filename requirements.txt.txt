@@ -1,0 +1,6 @@
+# requirements.txt
+streamlit
+google-generativeai
+serpapi
+requests
+tenacity
