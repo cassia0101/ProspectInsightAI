@@ -83,7 +83,7 @@ try:
 except Exception as e:
     st.error(f"ERRO ao buscar links no Google via SerpApi para '{query}': {e}")
     st.warning("Verifique se a sua API Key da SerpApi está correta e se você tem créditos.")
-    return resultados
+return resultados
 
 def resumir_com_gemini(links: list[str]) -> str:
     """
