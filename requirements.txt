@@ -1,6 +1,5 @@
 # requirements.txt
 streamlit
 google-generativeai
-serpapi==1.2.0
 requests
 tenacity
