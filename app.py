@@ -62,7 +62,7 @@ def buscar_links_google(query: str, num_resultados: int = 5, lang: str = "pt") -
     """
     st.info(f"Buscando {num_resultados} links no Google para: '{query}' (via SerpApi)...")
     resultados: list[str] = []
-    try:
+try:
     params = {
         "api_key": serpapi_api_key,
         "q": query,
@@ -80,8 +80,8 @@ def buscar_links_google(query: str, num_resultados: int = 5, lang: str = "pt") -
             if "link" in item:
                 resultados.append(item["link"])
     st.success(f"Links encontrados: {len(resultados)}")
-    except Exception as e:
-        st.error(f"ERRO ao buscar links no Google via SerpApi para '{query}': {e}")
+except Exception as e:
+    st.error(f"ERRO ao buscar links no Google via SerpApi para '{query}': {e}")
         st.warning("Verifique se a sua API Key da SerpApi está correta e se você tem créditos.")
     return resultados
 
