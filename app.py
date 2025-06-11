@@ -62,24 +62,24 @@ def buscar_links_google(query: str, num_resultados: int = 5, lang: str = "pt") -
     """
     st.info(f"Buscando {num_resultados} links no Google para: '{query}' (via SerpApi)...")
     resultados: list[str] = []
-try:
-----params = { # Alinhe esta linha (e todo o dicionário)
---------"api_key": serpapi_api_key,
---------"q": query,
---------"num": num_resultados,
---------"hl": "lang",
---------"gl": "br"
-----}
-----url = "https://serpapi.com/search" 
-----response = requests.get(url, params=params)
-----response.raise_for_status() 
-----res = response.json()  
-
-----if "organic_results" in res: 
---------for item in res["organic_results"]: 
-------------if "link" in item: 
-----------------resultados.append(item["link"]) 
-        st.success(f"Links encontrados: {len(resultados)}")
+    try:
+    params = {
+        "api_key": serpapi_api_key,
+        "q": query,
+        "num": num_resultados,
+        "hl": "lang",
+        "gl": "br"
+    }
+    url = "https://serpapi.com/search"
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    res = response.json()
+    
+    if "organic_results" in res:
+        for item in res["organic_results"]:
+            if "link" in item:
+                resultados.append(item["link"])
+    st.success(f"Links encontrados: {len(resultados)}")
     except Exception as e:
         st.error(f"ERRO ao buscar links no Google via SerpApi para '{query}': {e}")
         st.warning("Verifique se a sua API Key da SerpApi está correta e se você tem créditos.")
