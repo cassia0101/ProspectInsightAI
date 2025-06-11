@@ -2,7 +2,6 @@ import streamlit as st
 import os
 import requests
 import json
-from serpapi import GoogleSearch
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
 
 # --- Configuração das chaves de API ---
@@ -71,8 +70,10 @@ def buscar_links_google(query: str, num_resultados: int = 5, lang: str = "pt") -
             "hl": lang,
             "gl": "br"
         }
-        search = GoogleSearch(params)
-        res = search.get_dict()
+         url = "https://serpapi.com/search"
+    response = requests.get(url, params=params)
+    response.raise_for_status()  # Levanta um erro para respostas HTTP ruins (4xx ou 5xx)
+    res = response.json()
 
         if "organic_results" in res:
             for item in res["organic_results"]:
